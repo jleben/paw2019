@@ -1,0 +1,94 @@
+{
+  "wave1d-s2000-t256,256-shift-vec-hoist-p6": {
+    "size": 2000,
+    "tile": "256,256",
+    "buffer": "shift",
+    "vector": true,
+    "hoist": true,
+    "so": true,
+    "compiler": "gcc",
+    "par": 6,
+    "algo": "wave1d",
+    "latencies": {
+      "input_main_in": 1535
+    },
+    "storage": {
+      "main": {
+        "shape": [
+          1
+        ]
+      },
+      "main_in": {
+        "shape": [
+          3328
+        ],
+        "shift": {
+          "period-count": 1,
+          "size": 2,
+          "source": 1790
+        }
+      },
+      "memory": 106496053256,
+      "u": {
+        "shape": [
+          3328,
+          4000001
+        ],
+        "shift": {
+          "period-count": 1,
+          "size": 2,
+          "source": 1790
+        }
+      }
+    }
+  },
+  "wave2d-s2000-t32,32,256-shift-vec-hoist-p6": {
+    "size": 2000,
+    "tile": "32,32,256",
+    "buffer": "shift",
+    "vector": true,
+    "hoist": true,
+    "so": true,
+    "compiler": "gcc",
+    "par": 6,
+    "algo": "wave2d",
+    "latencies": {
+      "input_main_in": 548
+    },
+    "storage": {
+      "main": {
+        "shape": [
+          1
+        ]
+      },
+      "main_in": {
+        "shape": [
+          3104
+        ],
+        "shift": {
+          "period-count": 1,
+          "size": 2,
+          "source": 1566
+        }
+      },
+      "memory": 99427377680,
+      "t0": {
+        "shape": [
+          1
+        ]
+      },
+      "u": {
+        "shape": [
+          3104,
+          2001,
+          2001
+        ],
+        "shift": {
+          "period-count": 1,
+          "size": 2,
+          "source": 1566
+        }
+      }
+    }
+  }
+}
