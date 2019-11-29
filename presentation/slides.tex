@@ -11,6 +11,10 @@
 \usepackage{booktabs}
 \usepackage{fancyvrb}
 
+% In descriptions, start new line after label
+\usepackage{enumitem}
+\setlist[description]{style=nextline}
+
 \newcommand{\tuple}[1]{\langle #1 \rangle}
 
 \title{Arrp}
@@ -89,7 +93,7 @@ void process(const float * x,
 
 
 \begin{frame}
-\frametitle{Goals}
+\frametitle{Arrp}
 
 \begin{itemize}
 \item Design a language for stream processing that:
@@ -106,8 +110,117 @@ void process(const float * x,
 
 \end{frame}
 
-
 \section{The Arrp Language for Stream Processing}
+
+\begin{frame}[fragile]
+\frametitle{Familiar syntax}
+
+\textbf{One-pole filter}
+\[y[n] = b x[n] - a y[n-1]\]
+\begin{center}
+\begin{BVerbatim}
+y[n] = b*x[n] - a*y[n-1];
+\end{BVerbatim}
+\end{center}
+
+\textbf{FIR filter}
+\[y[n] = \sum_{i = 0}^{N-1} \; b[i] x[n-i]\]
+\begin{center}
+\begin{BVerbatim}
+y[n] = sum([i:N] -> b[i] * x[n-i])
+\end{BVerbatim}
+\end{center}
+
+\textbf{Max filter}
+\[y[n] = \max_{i = 0}^{N-1} \; x[n+i]\]
+\begin{center}
+\begin{BVerbatim}
+y[n] = max_elem([i:N] -> x[n+i]);
+\end{BVerbatim}
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Polymorphic, higher-order functions}
+
+\begin{center}
+\begin{BVerbatim}
+max_filter(N,x) = y where
+    y[n] = max_elem([i:N] -> x[n+i]);
+
+max_elem = fold((a,b) -> max(a,b));
+
+fold(f,x) = r[#x-1] where {
+    r[0] = x[0];
+    r[i] = f(r[i-1], x[i]), if i < #x;
+}
+\end{BVerbatim}
+\end{center}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+\frametitle{Point-wise Operations, Multi-dimensional Streams}
+
+\begin{center}
+\begin{BVerbatim}
+max_filter(N,x) = y where
+    y[n] = max_elem([i:N] -> x[n+i]);
+
+input x1 : [~]real32;
+y1 = max_filter(10, x1);
+
+input x2 : [~,10]real32;
+y2 = max_filter(15, x2);
+\end{BVerbatim}
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Multi-rate Programs}
+
+\begin{center}
+\begin{BVerbatim}
+downsample(x, factor) = [n] -> x[factor * n];
+
+upsample(x, factor) = y where
+    y[n] = {
+        x[n / factor], if n % factor == 0;
+        0,             otherwise
+    };
+
+max_filter(N, hop, x) = y where
+    y[n] = max_elem([i:N] -> x[hop * n + i]);
+\end{BVerbatim}
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Physical Modeling}
+
+\textbf{2d Wave Equation - FDTD\footnotemark}
+\begin{center}
+\begin{BVerbatim}
+u[n,i,j] =
+      b0 * u[n-2, i, j]
+    + b1 * u[n-1, i, j]
+    + b2 * (  u[n-1, i+1, j] + u[n-1, i, j+1]
+            + u[n-1, i-1, j] + u[n-1, i, j-1] );
+\end{BVerbatim}
+\end{center}
+
+\footnotetext{Stefan Bilbao. Numerical Sound Synthesis:
+Finite Difference Schemes and Simulation in Musical Acoustics. 2009.}
+\end{frame}
+
 
 
 \begin{frame}
