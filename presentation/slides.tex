@@ -23,9 +23,9 @@
 \setmonofont[Scale=0.95]{inconsolata}
 
 \title{Arrp}
-\subtitle{The Programming Language }
+\subtitle{A Programming Language for Signal Processing}
 \author{Jakob Leben}
-\institute{University of Victoria\\Department of Computer Science}
+\institute{Limbic Media, Victoria, Canada}
 \date{Lyon, December 14, 2019}
 
 \begin{document}
@@ -115,7 +115,7 @@ void process(const float * x,
 
 \end{frame}
 
-\section{The Arrp Language for Stream Processing}
+\section{Features}
 
 \begin{frame}[fragile]
 \frametitle{Familiar syntax}
@@ -226,6 +226,7 @@ u[n,i,j] =
 Finite Difference Schemes and Simulation in Musical Acoustics. 2009.}
 \end{frame}
 
+\section{Example of Usage}
 
 \begin{frame}[fragile]
 \frametitle{Example: One-Pole Filter}
@@ -313,6 +314,8 @@ ffmpeg -y -ac 1 -ar 44.1k -f f64le -i pipe:0 file:output.wav
 \end{Verbatim}
 
 \end{frame}
+
+\section{Future Work}
 
 \begin{frame}[fragile]
 \frametitle{Future Work}
