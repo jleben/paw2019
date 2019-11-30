@@ -6,7 +6,7 @@ all: figures slides
 slides: build/slides.pdf
 
 build/slides.pdf: presentation/slides.tex figures
-	cd build && pdflatex -halt-on-error -shell-escape ../presentation/slides.tex
+	cd build && xelatex -halt-on-error -shell-escape ../presentation/slides.tex
 
 .PHONY: figures
 figures: \
