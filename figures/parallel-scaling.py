@@ -102,14 +102,14 @@ def generate_plots(data, min_speed):
 
         handles, labels = axs[0][0].get_legend_handles_labels()
 
-        fig.legend(handles[:4], ["Arrp", "C++ HO", "C++ AO", "StreamIt"], loc='lower center', ncol=4, frameon=False)
+        fig.legend(handles[:4], ["Arrp", "C++ (restricted manual optimization)", "C++ (auto optimization)", "StreamIt"], loc='lower center', ncol=4, frameon=False)
         #fig.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
 
     elif args.for_slides:
 
-        matplotlib.rc('font', size = 8)
+        matplotlib.rc('font', size = 9)
 
-        fig = plt.figure(figsize = (fig_width, 4))
+        fig = plt.figure(figsize = (7, 4))
 
         axs2d = fig.subplots(2, 3,
                     gridspec_kw = { 'left': 0.04, 'right': 0.99, 'top': 0.95, 'bottom': 0.05, 'wspace': 0.24, 'hspace': 0.28 })
@@ -125,8 +125,9 @@ def generate_plots(data, min_speed):
 
         handles, labels = axs[0].get_legend_handles_labels()
 
-        fig.legend(handles[:4], ["Arrp", "C++ HO", "C++ AO", "StreamIt"],
+        fig.legend(handles[:4], ["Arrp", "C++\n(expected man. optim.)", "C++\n(auto optimization)", "StreamIt"],
                    bbox_to_anchor=(0.66,0,0.33,0.5),
+                   labelspacing=1.0,
                    loc='center', ncol=1, frameon=False)
 
     else:
