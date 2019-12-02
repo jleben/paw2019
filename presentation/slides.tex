@@ -140,13 +140,13 @@ y[n] = max_elem([i:N] -> x[n+i]);
 \frametitle{Polymorphic, higher-order functions}
 
 \begin{center}
-\begin{BVerbatim}
+\begin{BVerbatim}[commandchars=@$&]
 max_filter(N,x) = y where
     y[n] = max_elem([i:N] -> x[n+i]);
 
-max_elem = fold((a,b) -> max(a,b));
+max_elem = @textbf$fold&((a,b) -> max(a,b));
 
-fold(f,x) = r[#x-1] where {
+@textbf$fold(f,x)& = r[#x-1] where {
     r[0] = x[0];
     r[i] = f(r[i-1], x[i]), if i < #x;
 }
@@ -158,18 +158,21 @@ fold(f,x) = r[#x-1] where {
 
 
 \begin{frame}[fragile]
-\frametitle{Point-wise Operations, Multi-dimensional Streams}
+\frametitle{Multi-dimensional Streams \& Point-wise Operations}
 
 \begin{center}
-\begin{BVerbatim}
-max_filter(N,x) = y where
-    y[n] = max_elem([i:N] -> x[n+i]);
+\begin{BVerbatim}[commandchars=@$&]
+sum(x) = fold((a,b) -> a + b);
 
-input x1 : [~]real32;
-y1 = max_filter(10, x1);
+x1[n]   = e1(n),   if n < 5;
+x2[n,i] = e2(n,i), if n < 5;
+@textbf$x1 : [5]int&;
+@textbf$x2 : [5,~]int&;
 
-input x2 : [~,10]real32;
-y2 = max_filter(15, x2);
+y1 = sum(x1);
+y2 = sum(x2);
+@textbf$y1 : int&;
+@textbf$y2 : [~]int&;
 \end{BVerbatim}
 \end{center}
 
