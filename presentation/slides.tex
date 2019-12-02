@@ -114,79 +114,9 @@ General-purpose languages\\
 
 \end{frame}
 
-
 \begin{frame}[fragile]
-\frametitle{Motivation - Language Design}
-
-Variations of max filter:
-% FIXME: Make figure instead
-{
-\footnotesize
-\begin{align}
-\label{eq:max-filter}
-    y[n] &= \max_{i = 0}^{N-1} \; x[n+i] \\
-    y[n] &= \max_{i = 0}^{N-1} \; x[Hn+i] \\
-    y[n, j] &= \max_{i = 0}^{N-1} \; x[n+i, j], \quad 0 \leq j < M \\
-    y[n] &= \max_{j = 0}^{M-1} \; x[n, j]
-\end{align}
-}
-
-\vspace{-3em}
-\begin{figure}
-\begin{subfigure}[t]{0.4\textwidth}
-    \caption{Composition}
-    % NOTE: Save the SVG figures as PDF before building slides
-    \includegraphics[width=\textwidth]{../build/stream_graph}
-\end{subfigure}
-\hspace{0.5cm}
-\begin{subfigure}[t]{0.4\textwidth}
-\caption{Implementation}
-\footnotesize
-\vspace{-1em}
-\begin{verbatim}
-class max_filter
-{
-max_filter(int N, int H, int dim)
-{...}
-void process(const float * x,
-                   float * y)
-{...}
-}
-\end{verbatim}
-\end{subfigure}
-
-\end{figure}
-
-\end{frame}
-
-
-\begin{frame}[fragile]
-\frametitle{Motivation - Performance}
-
-\[y[n, j] = \max_{i = 0}^{N-1} \; x[n+i, j], \quad 0 \leq j < M\]
-
-\centering
-\includegraphics[height=2.5in]{../build/parallel-scaling-max-filter-slide}
-
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Arrp}
-
-\begin{itemize}
-\item Design a language for stream processing that:
-\begin{itemize}
-  \item Allows straightforward translation from mathematical equations.
-  \item Maximizes code reuse via modularity and abstraction.
-\end{itemize}
-\item Utilize the polyhedral framework to:
-\begin{itemize}
-  \item Avoid performance penalties of modularity and abstraction.
-  \item Potentially compete with hand-written C.
-\end{itemize}
-\end{itemize}
-
+\frametitle{Performance with High-Volume Streams}
+\includegraphics[width=\textwidth]{../build/parallel-scaling-slide}
 \end{frame}
 
 \section{Features}
