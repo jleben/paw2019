@@ -1,0 +1,7 @@
+input a : real64;
+input b : real64;
+input x : [~]real64;
+output y : [~]real64;
+
+y[0] = b*x[0];
+y[n] = b*x[n] - a*y[n-1];
