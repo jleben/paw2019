@@ -11,6 +11,7 @@
 \usepackage{booktabs}
 \usepackage{fancyvrb}
 \usepackage{multicol}
+\usepackage{url}
 
 % In descriptions, start new line after label
 \usepackage{enumitem}
@@ -221,8 +222,14 @@ Finite Difference Schemes and Simulation in Musical Acoustics. 2009.}
 \section{Example of Usage}
 
 \begin{frame}[fragile]
-\frametitle{Complete Example: One-Pole Filter}
+\frametitle{Complete Example}
 
+\textbf{One-pole filter\footnotemark:}
+\[y[n] = b\,x[n] - a\,y[n-1]\]
+
+\textbf{Implementation:}
+
+\vspace{5pt}
 \centering
 
 \begin{BVerbatim}
@@ -234,6 +241,8 @@ output y : [~]real64;
 y[0] = b*x[0];
 y[n] = b*x[n] - a*y[n-1];
 \end{BVerbatim}
+
+\footnotetext{\url{https://ccrma.stanford.edu/~jos/filters/One_Pole.html}}
 
 \end{frame}
 
