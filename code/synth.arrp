@@ -1,21 +1,17 @@
 
-
---input trigger_in : [~]bool;
 output sound : [~]real64;
-
-trigger_in = [n] -> if (n - int(0.1*sec)) % int(0.4*sec) == 0 then true else false;
-
 sr = 44100;
 
-sound = osc(t * 300*hz + 300*hz) * t * 0.2 where
-  t = 1.0 - ramp(0.2*sec, trigger_in);
+sound = osc(hz(500)) * 0.2 * ramp(trigger, sec(0.2));
+
+trigger[n] = if (n - int(sec(0.1))) % int(sec(0.4)) == 0 then true else false;
+
+ramp(trigger, duration) = y where {
+  y[0] = if trigger[0] then 1.0 else 0.0;
+  y[n] = if trigger[n] then 1.0 else max(0.0, y[n-1] - 1.0/duration);
+};
 
 osc(freq) = sin(2 * pi * phase(freq));
-
-ramp(duration, trigger) = y where {
-  y[0] = 1.0;
-  y[n] = if trigger[n-1] then 0.0 else min(1.0, y[n-1] + 1.0/duration);
-};
 
 phase(freq) = p where
 {
@@ -24,7 +20,7 @@ phase(freq) = p where
         wrap(x) = if x < 1 then x else x - 1;
 };
 
-hz = 1/sr;
-sec = sr;
+hz(v) = v/sr;
+sec(v) = v*sr;
 
 pi = 4 * atan(1);
