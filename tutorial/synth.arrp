@@ -1,0 +1,19 @@
+
+output sound : [~]real64;
+sr = 44100;
+
+sound = osc(hz(500)) * 0.2;
+
+osc(freq) = sin(2 * pi * phase(freq));
+
+phase(freq) = p where
+{
+    p[0] = 0.0;
+    p[t] = wrap(p[t-1] + freq[t-1]) where
+        wrap(x) = if x < 1 then x else x - 1;
+};
+
+hz(v) = v/sr;
+sec(v) = v*sr;
+
+pi = 4 * atan(1);
