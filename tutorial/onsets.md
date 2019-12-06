@@ -54,9 +54,9 @@ $$
   \sum_{i=0}^{W} a[i]^2
 $$
 
-The following code is an Arrp implementation of the above equation. It applies the provided function `sum` to a temporary array (*lambda* array) which selects the first `W` samples from `x`:
+The following code is an Arrp implementation of the above equation. It applies the provided function `sum` to a temporary array (*lambda* array) which contains the first `W` samples from `x`, squared:
 
-    sum([i:W] -> x[i])
+    sum([i:W] -> x[i]^2)
 
 **Challenge:**
 
