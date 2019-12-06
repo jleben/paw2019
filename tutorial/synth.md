@@ -2,26 +2,26 @@
 
 ## Getting Started
 
+The goal of this tutorial is to implement a synthesizer generating a repeating percussion-like sound ("pew pew pew").
+
 The file `synth.arrp` contains initial code. It generates a pure sinusoidal tone at 500 Hz, assuming a sampling rate of 44.1 kHz.
 
 You can test it using the following steps:
 
 - Compile the code into a program named `synth`:
 
-    arrp synth.arrp -x synth
+        arrp synth.arrp -x synth
 
 - Run the program and pass its output through `ffmpeg` to generate a 2 seconds long audio file `output.wav`:
 
-    ./synth -f raw | ffmpeg -y -t 2.0 -ac 1 -ar 44.1k -f f64le -i pipe:0 file:output.wav
+        ./synth -f raw | ffmpeg -y -t 2.0 -ac 1 -ar 44.1k -f f64le -i pipe:0 file:output.wav
 
 - The above two steps are defined in the provided Makefile, so if you have `make` installed, you can simply run `make synth` instead of the first step and `make synth-output` instead of both steps.
 
 - You can also print the output of the `synth` program in the console. For example, the following prints the first 100 samples:
 
-    ./synth | head -n 100
+        ./synth | head -n 100
 
-
-The goal of this tutorial is to modify the synthesizer code in `synth.arrp` so that it generates a repeating percussive sound.
 
 ## Creating a trigger
 

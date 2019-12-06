@@ -1,0 +1,14 @@
+
+input x : [~]real64;
+output y : [~]real64;
+
+sr = 44100;
+
+y[n] = if x[n] > 0.2 then 1.0 else 0.0;
+
+sum = fold((a,b) -> a+b);
+
+fold(f,x) = r[#x-1] where {
+    r[0] = x[0];
+    r[i] = f(r[i-1], x[i]), if i < #x;
+};

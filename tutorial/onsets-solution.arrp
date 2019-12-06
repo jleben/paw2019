@@ -1,0 +1,20 @@
+
+input x : [~]real64;
+output y : [~]real64;
+
+sr = 44100;
+H = sr//40;
+W = 2*H;
+
+energy[n] = sum([i:W] -> x[H*n + i]^2);
+
+energy_up[n] = energy[n+1] - energy[n] > 5.0;
+
+y[n] = if (energy_up[n+1] and not energy_up[n]) then 1.0 else 0.0;
+
+sum = fold((a,b) -> a+b);
+
+fold(f,x) = r[#x-1] where {
+    r[0] = x[0];
+    r[i] = f(r[i-1], x[i]), if i < #x;
+};
