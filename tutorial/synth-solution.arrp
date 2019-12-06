@@ -2,9 +2,10 @@
 output sound : [~]real64;
 sr = 44100;
 
-sound = osc(hz(500)) * 0.2 * ramp(trigger, sec(0.2));
+sound = osc(hz(200 + 400*p)) * 0.2 * p where
+  p = ramp(trigger, sec(0.2));
 
-trigger[n] = if (n - int(sec(0.1))) % int(sec(0.4)) == 0 then true else false;
+trigger[n] = if n % int(sec(0.4)) == 0 then true else false;
 
 ramp(trigger, duration) = y where {
   y[0] = if trigger[0] then 1.0 else 0.0;
