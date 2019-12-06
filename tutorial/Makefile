@@ -35,3 +35,16 @@ synth.html: synth.md
 
 onsets.html: onsets.md
 	pandoc onsets.md -s --mathjax -o onsets.html
+
+synth.pdf: synth.md
+	pandoc synth.md -o synth.pdf
+
+onsets.pdf: onsets.md
+	pandoc onsets.md -o onsets.pdf
+
+.PHONY: tutorial-package
+tutorial-package: \
+synth.arrp synth-solution.arrp synth.html synth.pdf \
+onsets.arrp onsets-solution.arrp onsets.html onsets.pdf
+	rm -f tutorial.zip
+	zip tutorial.zip $^
