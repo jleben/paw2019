@@ -12,9 +12,9 @@ You can test the program using the following steps:
 
         arrp onsets.arrp -x onsets
 
-- Run the program and with the file `claps.wav` as input and writing the output into `outputs.txt`. The input file is read using `ffmpeg`:
+- Run the program and with the file `claps.wav` as input and writing the output into `onsets.txt`. The input file is read using `ffmpeg`:
 
-        ffmpeg -i claps.wav -ar 44.1k -f f64le pipe:1 | ./onsets x=pipe:raw > output.txt
+        ffmpeg -i claps.wav -ar 44.1k -f f64le pipe:1 | ./onsets x=pipe:raw > onsets.txt
 
 - The above two steps are defined in the provided Makefile, so if you have `make` installed, you can simply run `make onsets` instead of the first step and `make onsets-output` instead of both steps.
 

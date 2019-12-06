@@ -12,9 +12,9 @@ You can test it using the following steps:
 
         arrp synth.arrp -x synth
 
-- Run the program and pass its output through `ffmpeg` to generate a 2 seconds long audio file `output.wav`:
+- Run the program and pass its output through `ffmpeg` to generate a 2 seconds long audio file `synth.wav`:
 
-        ./synth -f raw | ffmpeg -y -t 2.0 -ac 1 -ar 44.1k -f f64le -i pipe:0 file:output.wav
+        ./synth -f raw | ffmpeg -y -t 2.0 -ac 1 -ar 44.1k -f f64le -i pipe:0 file:synth.wav
 
 - The above two steps are defined in the provided Makefile, so if you have `make` installed, you can simply run `make synth` instead of the first step and `make synth-output` instead of both steps.
 
