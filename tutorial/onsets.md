@@ -1,4 +1,4 @@
-# Analyzing Sound
+# Tutorial: Analyzing Sound with Arrp
 
 ## Getting Started
 

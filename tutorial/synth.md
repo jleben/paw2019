@@ -1,4 +1,4 @@
-# Synthesizing Sound
+# Tutorial: Synthesizing Sound with Arrp
 
 ## Getting Started
 
