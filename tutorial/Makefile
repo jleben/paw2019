@@ -1,4 +1,6 @@
 
+default: synth onsets
+
 synth: synth.arrp
 	arrp synth.arrp -x synth
 
