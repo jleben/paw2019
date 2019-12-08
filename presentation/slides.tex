@@ -78,7 +78,7 @@ class filter
 \end{frame}
 
 \begin{frame}[t, fragile]
-\frametitle{Stream Programming Landscape}
+\frametitle{Place of Arrp in the Landscape}
 
 \begin{center}
 ← larger scale / smaller scale →
@@ -95,7 +95,7 @@ Other\\Streaming\\Lang.
 multi-dimensional programs\\
 multi-rate programs\\
 highly reusable functions\\
-powerful optimizations\\
+powerful polyhedral optimizations\\
 parallelization
 \end{center}
 \end{minipage}\hfill
@@ -156,7 +156,7 @@ y[n] = max_elem([i:N] -> x[n+i]);
 max_filter(N,x) = y where
     y[n] = max_elem([i:N] -> x[n+i]);
 
-max_elem = @textbf$fold&((a,b) -> max(a,b));
+max_elem(x) = @textbf$fold&((a,b) -> max(a,b), x);
 
 @textbf$fold(f,x)& = r[#x-1] where {
     r[0] = x[0];
@@ -335,8 +335,7 @@ ffmpeg -y -ac 1 -ar 44.1k -f f64le -i pipe:0 file:output.wav
 \begin{itemize}
 \item Standard library
 \item Integration with other systems (Bela, LV2, SuperCollider, Max/MSP, ...)
-\item Parametric array sizes
-\item Support for implementation of algorithms like FFT
+\item Relax constraints due to polyhedral optimization (e.g. parametric array sizes)
 \item Automatic optimization
 \end{itemize}
 
