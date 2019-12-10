@@ -34,3 +34,40 @@ build/periodic-tiling.svg: figures/periodic-tiling.py
 
 build/buf-mode-storage.tex: figures/buf-mode-storage.py
 	cd build && python3 ../figures/buf-mode-storage.py
+
+
+.PHONY: tutorial
+tutorial: \
+	build/tutorial/tutorial.html \
+	build/tutorial/synth.html \
+	build/tutorial/onsets.html \
+	build/tutorial/tutorial.pdf \
+	build/tutorial/synth.pdf \
+	build/tutorial/onsets.pdf
+
+build/tutorial:
+	mkdir -p build/tutorial
+
+build/tutorial/%.html: tutorial/%.md | build/tutorial
+	pandoc $< -s --mathjax -o $@
+
+build/tutorial/%.pdf: tutorial/%.md | build/tutorial
+	pandoc $< -o $@
+
+.PHONY: tutorial-package
+tutorial-package: \
+	tutorial/synth.arrp \
+	tutorial/synth-solution.arrp \
+	tutorial/onsets.arrp \
+	tutorial/onsets-solution.arrp \
+	tutorial/Makefile \
+	build/tutorial/tutorial.html \
+	build/tutorial/synth.html \
+	build/tutorial/onsets.html \
+	build/tutorial/tutorial.pdf \
+	build/tutorial/synth.pdf \
+	build/tutorial/onsets.pdf \
+	| build/tutorial
+
+	cp tutorial/*.arrp build/tutorial/
+	cd build && rm -f tutorial.zip && zip -r tutorial.zip tutorial

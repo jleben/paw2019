@@ -27,27 +27,3 @@ onsets-solution: onsets-solution.arrp
 .PHONY: onsets-solution-output
 onsets-solution-output: onsets-solution
 	ffmpeg -i claps.wav -ar 44.1k -f f64le pipe:1 | ./onsets-solution x=pipe:raw > onsets-solution.txt
-
-
-.PHONY: tutorial
-tutorial: synth.html onsets.html
-
-synth.html: synth.md
-	pandoc synth.md -s --mathjax -o synth.html
-
-onsets.html: onsets.md
-	pandoc onsets.md -s --mathjax -o onsets.html
-
-synth.pdf: synth.md
-	pandoc synth.md -o synth.pdf
-
-onsets.pdf: onsets.md
-	pandoc onsets.md -o onsets.pdf
-
-.PHONY: tutorial-package
-tutorial-package: \
-synth.arrp synth-solution.arrp synth.html synth.pdf \
-onsets.arrp onsets-solution.arrp onsets.html onsets.pdf \
-Makefile
-	rm -f tutorial.zip
-	zip tutorial.zip $^
