@@ -74,14 +74,14 @@ build/tutorial/mac/ffmpeg:
 	unzip build/ffmpeg-4.2.1.zip -d build/tutorial/mac/
 
 build/tutorial/mac/arrp/bin/arrp:
-	cd build && wget https://github.com/jleben/arrp/releases/download/version-1.0.0-beta1/arrp_1.0.0_macos.zip
+	cd build && wget https://github.com/jleben/arrp/releases/download/version-1.0.0-beta2/arrp_1.0.0_macos.zip
 	cd build && unzip arrp_1.0.0_macos.zip
 	mkdir -p build/tutorial/mac/arrp
 	cp -r build/arrp_1.0.0_macos/* build/tutorial/mac/arrp/
 
 build/tutorial/linux/arrp_1.0.0_amd64.deb:
 	mkdir -p build/tutorial/linux
-	cd build/tutorial/linux && wget https://github.com/jleben/arrp/releases/download/version-1.0.0-beta1/arrp_1.0.0_amd64.deb
+	cd build/tutorial/linux && wget https://github.com/jleben/arrp/releases/download/version-1.0.0-beta2/arrp_1.0.0_amd64.deb
 
 .PHONY: tutorial-package
 tutorial-package: tutorial \
