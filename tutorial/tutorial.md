@@ -1,10 +1,9 @@
 # Arrp Tutorial - Programmable Audio Workshop 2019
 
-You can complete parts of the tutorial solely using the online [Arrp playground](http://arrp-lang.info/play).
+You can complete parts of the tutorial using the online [Arrp playground](http://arrp-lang.info/play).
 
 If you wish to compile and run Arrp code on your computer, these are the prerequisites:
 
-- Linux or Mac OS
 - C++ compiler (g++, clang++ or other)
 - Linux:
       - Open the console and navigate to the `tutorial` directory.
