@@ -2,7 +2,8 @@
 
 ## Getting Started
 
-The goal of this tutorial is to implement a synthesizer generating a repeating percussion-like sound ("pew pew pew"). Listen to an example [here](https://jakob-leben.s3-us-west-2.amazonaws.com/paw2019/synth-solution.wav).
+The goal of this tutorial is to implement a synthesizer generating a repeating percussion-like sound ("pew pew pew").
+Listen to an [example](synth-solution.wav).
 
 The file `synth.arrp` contains initial code. It generates a pure sinusoidal tone at 500 Hz, assuming a sampling rate of 44.1 kHz.
 

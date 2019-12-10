@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-The goal of this tutorial is to create a sound analyzer detecting onsets of sounds. As an example, we will use a short sound clip ([download](https://jakob-leben.s3-us-west-2.amazonaws.com/paw2019/claps.wav)) - the beginning of the disco song Car Wash by Rose Royce. The clip contains several classic disco claps. Our program will detect these claps and output a stream of numbers: a value of 1 at the beginning of each clap, and 0 at all other instants.
+The goal of this tutorial is to create a sound analyzer detecting onsets of sounds. As an example, we will use a short sound clip ([claps.wav](claps.wav)). This is the beginning of the disco song Car Wash by Rose Royce. The clip contains several classic disco claps. Our program will detect these claps and output a stream of numbers: a value of 1 at the beginning of each clap, and 0 at all other instants.
 
 The file `onsets.arrp` contains the initial code. The code represents a first attempt at the goal, simply outputting 1 whenever the amplitude of the input signal is larger than a threshold.
 

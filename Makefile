@@ -43,7 +43,18 @@ tutorial: \
 	build/tutorial/onsets.html \
 	build/tutorial/tutorial.pdf \
 	build/tutorial/synth.pdf \
-	build/tutorial/onsets.pdf
+	build/tutorial/onsets.pdf \
+	tutorial/Makefile \
+	tutorial/synth.arrp \
+	tutorial/synth-solution.arrp \
+	tutorial/onsets.arrp \
+	tutorial/onsets-solution.arrp \
+	build/tutorial/claps.wav \
+	build/tutorial/synth-solution.wav \
+	| build/tutorial
+
+	cp -u tutorial/Makefile build/tutorial/
+	cp -u tutorial/*.arrp build/tutorial/
 
 build/tutorial:
 	mkdir -p build/tutorial
@@ -54,20 +65,13 @@ build/tutorial/%.html: tutorial/%.md | build/tutorial
 build/tutorial/%.pdf: tutorial/%.md | build/tutorial
 	pandoc $< -o $@
 
-.PHONY: tutorial-package
-tutorial-package: \
-	tutorial/synth.arrp \
-	tutorial/synth-solution.arrp \
-	tutorial/onsets.arrp \
-	tutorial/onsets-solution.arrp \
-	tutorial/Makefile \
-	build/tutorial/tutorial.html \
-	build/tutorial/synth.html \
-	build/tutorial/onsets.html \
-	build/tutorial/tutorial.pdf \
-	build/tutorial/synth.pdf \
-	build/tutorial/onsets.pdf \
-	| build/tutorial
+build/tutorial/claps.wav:
+	cd build/tutorial && wget https://jakob-leben.s3-us-west-2.amazonaws.com/paw2019/claps.wav
 
-	cp tutorial/*.arrp build/tutorial/
+build/tutorial/synth-solution.wav:
+	cd build/tutorial && wget https://jakob-leben.s3-us-west-2.amazonaws.com/paw2019/synth-solution.wav
+
+
+.PHONY: tutorial-package
+tutorial-package: tutorial
 	cd build && rm -f tutorial.zip && zip -r tutorial.zip tutorial
