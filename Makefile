@@ -71,7 +71,27 @@ build/tutorial/claps.wav:
 build/tutorial/synth-solution.wav:
 	cd build/tutorial && wget https://jakob-leben.s3-us-west-2.amazonaws.com/paw2019/synth-solution.wav
 
+build/tutorial/mac/ffmpeg:
+	mkdir -p build/tutorial/mac
+	cd build && wget https://evermeet.cx/ffmpeg/ffmpeg-4.2.1.zip
+	unzip build/ffmpeg-4.2.1.zip -d build/tutorial/mac/
+
+build/tutorial/mac/arrp/bin/arrp:
+	cd build && wget https://github.com/jleben/arrp/releases/download/version-1.0.0-beta1/arrp_1.0.0_macos.zip
+	cd build && unzip arrp_1.0.0_macos.zip
+	mkdir -p build/tutorial/mac/arrp
+	cp -r build/arrp_1.0.0_macos/* build/tutorial/mac/arrp/
+
+build/tutorial/linux/arrp_1.0.0_amd64.deb:
+	mkdir -p build/tutorial/linux
+	cd build/tutorial/linux && wget https://github.com/jleben/arrp/releases/download/version-1.0.0-beta1/arrp_1.0.0_amd64.deb
 
 .PHONY: tutorial-package
-tutorial-package: tutorial
+tutorial-package: tutorial \
+	tutorial/mac/setup.sh \
+	build/tutorial/linux/arrp_1.0.0_amd64.deb \
+	build/tutorial/mac/ffmpeg \
+	build/tutorial/mac/arrp/bin/arrp
+
+	cp -u tutorial/mac/setup.sh build/tutorial/mac/
 	cd build && rm -f tutorial.zip && zip -r tutorial.zip tutorial
