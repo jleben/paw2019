@@ -47,6 +47,7 @@ onsets.pdf: onsets.md
 .PHONY: tutorial-package
 tutorial-package: \
 synth.arrp synth-solution.arrp synth.html synth.pdf \
-onsets.arrp onsets-solution.arrp onsets.html onsets.pdf
+onsets.arrp onsets-solution.arrp onsets.html onsets.pdf \
+Makefile
 	rm -f tutorial.zip
 	zip tutorial.zip $^
