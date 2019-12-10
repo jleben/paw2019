@@ -51,7 +51,7 @@ Next, instead of just selecting elements out of `x`, let's estimate the loudness
 If we consider an array 'a' with size W, the following equation defines the energy of the array which is a rough estimate of loudness:
 
 $$
-  \sum_{i=0}^{W} a[i]^2
+  \sum_{i=0}^{W-1} a[i]^2
 $$
 
 The following code is an Arrp implementation of the above equation. It applies the provided function `sum` to a temporary array (*lambda* array) which contains the first `W` samples from `x`, squared:
