@@ -47,6 +47,7 @@ tutorial: \
 	tutorial/onsets.arrp \
 	tutorial/onsets-solution.arrp \
 	tutorial/run-onsets-realtime.sh \
+	tutorial/onsets-rt-host.cpp \
 	build/tutorial/claps.wav \
 	build/tutorial/synth-solution.wav \
 	| build/tutorial
@@ -54,6 +55,7 @@ tutorial: \
 	cp -u tutorial/Makefile build/tutorial/
 	cp -u tutorial/*.arrp build/tutorial/
 	cp -u tutorial/run-onsets-realtime.sh build/tutorial/
+	cp -u tutorial/onsets-rt-host.cpp build/tutorial/
 
 build/tutorial:
 	mkdir -p build/tutorial
