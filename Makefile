@@ -68,28 +68,35 @@ build/tutorial/%.pdf: tutorial/%.md | build/tutorial
 	pandoc $< -o $@
 
 build/tutorial/claps.wav:
-	cd build/tutorial && wget https://jakob-leben.s3-us-west-2.amazonaws.com/paw2019/claps.wav
+	cd build/tutorial && wget -nc https://jakob-leben.s3-us-west-2.amazonaws.com/paw2019/claps.wav
 
 build/tutorial/synth-solution.wav:
-	cd build/tutorial && wget https://jakob-leben.s3-us-west-2.amazonaws.com/paw2019/synth-solution.wav
+	cd build/tutorial && wget -nc https://jakob-leben.s3-us-west-2.amazonaws.com/paw2019/synth-solution.wav
 
-build/tutorial/mac/ffmpeg:
+build/ffmpeg-4.2.1.zip:
+	cd build && wget -nc https://evermeet.cx/ffmpeg/ffmpeg-4.2.1.zip
+
+build/tutorial/mac/ffmpeg: build/ffmpeg-4.2.1.zip
 	mkdir -p build/tutorial/mac
-	cd build && wget https://evermeet.cx/ffmpeg/ffmpeg-4.2.1.zip
 	unzip build/ffmpeg-4.2.1.zip -d build/tutorial/mac/
 
-build/tutorial/mac/arrp/bin/arrp:
-	cd build && wget https://github.com/jleben/arrp/releases/download/version-1.0.0-beta2/arrp_1.0.0_macos.zip
+build/arrp_1.0.0_macos.zip:
+	cd build && wget -nc https://github.com/jleben/arrp/releases/download/version-1.0.0-beta2/arrp_1.0.0_macos.zip
+
+build/tutorial/mac/arrp/bin/arrp: build/arrp_1.0.0_macos.zip
+	rm -rf build/arrp_1.0.0_macos
 	cd build && unzip arrp_1.0.0_macos.zip
 	mkdir -p build/tutorial/mac/arrp
 	cp -r build/arrp_1.0.0_macos/* build/tutorial/mac/arrp/
 
 build/tutorial/linux/arrp_1.0.0_amd64.deb:
 	mkdir -p build/tutorial/linux
-	cd build/tutorial/linux && wget https://github.com/jleben/arrp/releases/download/version-1.0.0-beta2/arrp_1.0.0_amd64.deb
+	cd build/tutorial/linux && wget -nc https://github.com/jleben/arrp/releases/download/version-1.0.0-beta2/arrp_1.0.0_amd64.deb
 
 .PHONY: tutorial-package
-tutorial-package: tutorial \
+tutorial-package: build/tutorial.zip
+
+build/tutorial.zip: tutorial \
 	tutorial/mac/setup.sh \
 	build/tutorial/linux/arrp_1.0.0_amd64.deb \
 	build/tutorial/mac/ffmpeg \
