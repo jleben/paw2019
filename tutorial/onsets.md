@@ -2,9 +2,9 @@
 
 ## Getting Started
 
-The goal of this tutorial is to create a sound analyzer detecting onsets of sounds. As an example, we will use a short sound clip ([claps.wav](claps.wav)). This is the beginning of the disco song Car Wash by Rose Royce. The clip contains several classic disco claps. Our program will detect these claps and output a stream of numbers: a value of 1 at the beginning of each clap, and 0 at all other instants.
+The goal of this tutorial is to create a sound analyzer detecting onsets of sounds. As an example, we will use a short sound clip ([claps.wav](claps.wav)). This is the beginning of the disco song Car Wash by Rose Royce. The clip contains several classic disco claps. Our program will detect these claps and output a stream of boolean values: true at the beginning of each clap, and false at all other instants.
 
-The file `onsets.arrp` contains the initial code. The code represents a first attempt at the goal, simply outputting 1 whenever the amplitude of the input signal is larger than a threshold.
+The file `onsets.arrp` contains the initial code. The code represents a first attempt at the goal, simply outputting true whenever the amplitude of the input signal is larger than a threshold.
 
 You can test the program using the following steps:
 
@@ -24,7 +24,7 @@ There are two issues with the initial code:
 
 - The output stream has one element for each input element (audio sample). This output rate is much higher then normally required for audio analysis.
 
-- The output stream contains many ones for each clap because each clap consists of many oscillations and the code outputs a 1 whenever the signal oscillates above a threshold.
+- The output stream contains many true values for each clap because each clap consists of many oscillations and the code outputs true whenever the signal oscillates above a threshold.
 
 Both the above problems are usually solved using the *overlapped window* approach: sound is segmented into overlapping blocks of samples called *windows* and a single value is output for each window. In our case, an output value will represent the loudness of a window. We will detect the onset of a clap as the moment when this loudness suddenly increases.
 
@@ -41,7 +41,7 @@ This code defines a hop size `H = 10` and then uses `H` to define a stream `ener
 
 - Modify the hop size `H` so that `energy` contains about 40 elements per second, considering the sampling rate named `sr`. The stream `energy` should then contain about 180 elements.
 
-Note: You can output `energy` instead of `y` by changing the line `output y ...` to `output energy ...`.
+Note: You can output `energy` instead of `y` by changing the line `output y : [~]bool;` to `output energy : [~]real64;`.
 
 
 ## Computing Energy of Input Windows
@@ -70,9 +70,9 @@ Finally, we can detect the onset of a clap by detecting a sudden increase in ene
 
 For example, the following computes the difference between consecutive elements of `energy`:
 
-    y[n] = energy[n+1] - energy[n];
+    energy_dif[n] = energy[n+1] - energy[n];
 
 **Challenge:**
 
-- Define `y` so that it contains a value of 1 when the energy increases significantly and 0 otherwise.
-- You may notice that `y` still contains multiple consecutive 1s for each clap. Try modifying the code to only output the first out of a group of 1s for each clap, and 0 otherwise.
+- Define `y` so that it is true when the energy increases significantly and false otherwise.
+- You may notice that `y` still contains multiple consecutive true values for each clap. Try modifying the code to convert the true values other than the first within a group to false.

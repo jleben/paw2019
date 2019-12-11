@@ -1,10 +1,10 @@
 
 input x : [~]real64;
-output y : [~]real64;
+output y : [~]bool;
 
 sr = 44100;
 
-y[n] = if x[n] > 0.2 then 1.0 else 0.0;
+y[n] = x[n] > 0.2;
 
 sum = fold((a,b) -> a+b);
 
