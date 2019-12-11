@@ -15,7 +15,8 @@ If you wish to compile and run Arrp code on your computer, these are the prerequ
 
 ## Tutorial Overview
 
-This tutorial consists of two parts:
+This tutorial has three parts:
 
 - [Synthesizing Sound with Arrp](synth.html)
 - [Analyzing Sound with Arrp](onsets.html)
+- [Real-time Processing with Arrp](realtime.html)

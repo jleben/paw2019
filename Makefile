@@ -41,6 +41,7 @@ tutorial: \
 	build/tutorial/tutorial.html \
 	build/tutorial/synth.html \
 	build/tutorial/onsets.html \
+	build/tutorial/realtime.html \
 	tutorial/Makefile \
 	tutorial/synth.arrp \
 	tutorial/synth-solution.arrp \
