@@ -27,3 +27,9 @@ onsets-solution: onsets-solution.arrp
 .PHONY: onsets-solution-output
 onsets-solution-output: onsets-solution
 	ffmpeg -i claps.wav -ar 44.1k -f f64le pipe:1 | ./onsets-solution x=pipe:raw > onsets-solution.txt
+
+onsets.cpp: onsets-solution.arrp
+	arrp onsets-solution.arrp --cpp onsets.cpp
+
+onsets-rt: onsets.cpp onsets-rt-host.cpp
+	g++ onsets-rt-host.cpp -o onsets-rt -lrtaudio -lpthread

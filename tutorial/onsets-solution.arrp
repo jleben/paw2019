@@ -1,6 +1,6 @@
 
 input x : [~]real64;
-output y : [~]real64;
+output y : [~]bool;
 
 sr = 44100;
 H = sr//40;
@@ -8,9 +8,10 @@ W = 2*H;
 
 energy[n] = sum([i:W] -> x[H*n + i]^2);
 
-energy_up[n] = energy[n+1] - energy[n] > 5.0;
+-- NOTE: It is best to compare non-overlapping energy measurements (2 samples apart):
+energy_up[n] = energy[n+2] - energy[n] > 8.0;
 
-y[n] = if (energy_up[n+1] and not energy_up[n]) then 1.0 else 0.0;
+y[n] = energy_up[n+1] and not energy_up[n];
 
 sum = fold((a,b) -> a+b);
 
