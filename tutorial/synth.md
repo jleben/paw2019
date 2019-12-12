@@ -30,7 +30,7 @@ First, we need to generate a trigger signal - a signal indicating when in time a
 
 Here is an example where the first signal sample is true, and all the rest are false:
 
-    trigger[n] = if n == 0 then true else false;
+    trigger[n] = n == 0;
 
 You can test this signal in the online Playground by combining it with the following line that defines an output:
 
