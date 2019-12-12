@@ -49,6 +49,8 @@ tutorial: \
 	tutorial/onsets-solution.arrp \
 	tutorial/run-onsets-realtime.sh \
 	tutorial/onsets-rt-host.cpp \
+	tutorial/claps_8khz.wav \
+	tutorial/claps_8khz.txt \
 	build/tutorial/claps.wav \
 	build/tutorial/synth-solution.wav \
 	| build/tutorial
@@ -57,6 +59,7 @@ tutorial: \
 	cp -u tutorial/*.arrp build/tutorial/
 	cp -u tutorial/run-onsets-realtime.sh build/tutorial/
 	cp -u tutorial/onsets-rt-host.cpp build/tutorial/
+	cp -u tutorial/claps_8khz.wav tutorial/claps_8khz.txt build/tutorial/
 
 build/tutorial:
 	mkdir -p build/tutorial

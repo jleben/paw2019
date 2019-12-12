@@ -4,19 +4,26 @@
 
 The goal of this tutorial is to create a sound analyzer detecting onsets of sounds. As an example, we will use a short sound clip ([claps.wav](claps.wav)). This is the beginning of the disco song Car Wash by Rose Royce. The clip contains several classic disco claps. Our program will detect these claps and output a stream of boolean values: true at the beginning of each clap, and false at all other instants.
 
-The file `onsets.arrp` contains the initial code. The code represents a first attempt at the goal, simply outputting true whenever the amplitude of the input signal is larger than a threshold.
+The file [onsets.arrp](onsets.arrp) contains the initial code. The code represents a first attempt at the goal, simply outputting true whenever the amplitude of the input signal is larger than a threshold.
 
-You can test the program using the following steps:
+You can run the program using the following steps:
 
 - Compile the code into a program named `onsets`:
 
         arrp onsets.arrp -x onsets
 
-- Run the program and with the file `claps.wav` as input and writing the output into `onsets.txt`. The input file is read using `ffmpeg`:
+- Run the program using the file `claps.wav` as input and writing the output into `onsets.txt`. The input file is read using `ffmpeg`:
 
         ffmpeg -i claps.wav -ar 44.1k -f f64le pipe:1 | ./onsets x=pipe:raw > onsets.txt
 
 - The above two steps are defined in the provided Makefile, so if you have `make` installed, you can simply run `make onsets` instead of the first step and `make onsets-output` instead of both steps.
+
+Alternatively, if you are using the online [Playground](http://arrp-lang.info/play), you can use as input a shorter clip containing only the last 5 of the claps, downsampled to 8 kHz ([claps_8khz.wav](claps_8khz.wav)) and converted to text ([claps_8khz.txt](claps_8khz.txt)):
+
+- Copy the contents of [claps_8khz.txt](claps_8khz.txt) into the Input box in the Playground.
+- Copy the code from [onsets.arrp](onsets.arrp) into the Code box and modify the definition of `sr` to `sr = 8000;`.
+
+Note that the Playground outputs only the first 1000 output elements.
 
 ## Strategy
 
