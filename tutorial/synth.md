@@ -19,11 +19,6 @@ You can test it using the following steps:
 
 - The above two steps are defined in the provided Makefile, so if you have `make` installed, you can simply run `make synth` instead of the first step and `make synth-output` instead of both steps.
 
-- You can also print the output of the `synth` program in the console. For example, the following prints the first 100 samples:
-
-        ./synth | head -n 100
-
-
 ## Creating a trigger
 
 First, we need to generate a trigger signal - a signal indicating when in time an instance of the sound should be started. This signal will have boolean values: true when the sound should start, and false otherwise.
@@ -32,9 +27,11 @@ Here is an example where the first signal sample is true, and all the rest are f
 
     trigger[n] = n == 0;
 
-You can test this signal in the online Playground by combining it with the following line that defines an output:
+Note: To check your code, you can output `trigger` (or similarly any other named value) by adding the line:
 
-    output trigger : [~]bool;
+    output trigger;
+
+Then, you can check the output by running `./synth | head -n 100` to print the first 100 output values, or run the program in the online [Playground](http://arrp-lang.info/play) which displays up to 1000 output values. Please mind that only one output definition is allowed in a program.
 
 Challenge: Modify `trigger` so that it is true whenever `n` is a multiple of the desired number of samples. You can use the function `sec` defined in `synth.arrp` to convert a duration in seconds to samples.
 
