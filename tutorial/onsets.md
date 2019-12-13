@@ -81,5 +81,5 @@ For example, the following computes the difference between consecutive elements 
 
 **Challenge:**
 
-- Define `y` so that it is true when the energy increases significantly and false otherwise.
+- Define `y` so that it is true when the energy difference is larger than a certain threshold and false otherwise. Choose the threshold carefully so that all the claps are detected (there is 7 claps in the full-length clip, and 5 in the text version for the Playground).
 - You may notice that `y` still contains multiple consecutive true values for each clap. Try modifying the code to convert the true values other than the first within a group to false.
