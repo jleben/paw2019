@@ -46,7 +46,7 @@ This code defines a hop size `H = 10` and then uses `H` to define a stream `ener
 
 **Challenge:**
 
-- Modify the hop size `H` so that `energy` contains about 40 elements per second, considering the sampling rate named `sr`. The stream `energy` should then contain about 180 elements.
+- Modify the hop size `H` so that `energy` contains about 40 elements per second, considering the sampling rate named `sr`. You may need to use integer division with the syntax `a//b`. With this hop size, the stream `energy` should contain only about 180 elements for the full-length clip at 44.1 kHz.
 
 Note: You can output `energy` instead of `y` by changing the line `output y : [~]bool;` to `output energy : [~]real64;`.
 
