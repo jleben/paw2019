@@ -55,20 +55,20 @@ Note: You can output `energy` instead of `y` by changing the line `output y : [~
 
 Next, instead of just selecting elements out of `x`, let's estimate the loudness of windows beginning at those elements.
 
-If we consider an array 'a' with size W, the following equation defines the energy of the array which is a rough estimate of loudness:
+If we consider an array 'x' with size W, the following equation defines the energy of the array which is a rough estimate of loudness:
 
 $$
-  \sum_{i=0}^{W-1} a[i]^2
+  \sum_{i=0}^{W-1} x[i]^2
 $$
 
-The following code is an Arrp implementation of the above equation. It applies the provided function `sum` to a temporary array (*lambda* array) which contains the first `W` samples from `x`, squared:
+The following Arrp expression implements the above equation. It applies the provided function `sum` to a temporary array (*lambda* array) which contains the first `W` samples from `x`, squared:
 
     sum([i:W] -> x[i]^2)
 
 **Challenge:**
 
-- Set the window size `W` to be twice your hop size `H`.
-- Change the stream `energy` so that each element at `n` equals the energy of `W` elements of `x` starting at `H*n`.
+- Define the window size `W` to be twice your hop size `H`.
+- Change the stream `energy` so that each element at `n` equals the energy of a window of `W` elements starting at `H*n` from the input stream `x`.
 
 
 ## Detecting Sudden Increase in Energy
