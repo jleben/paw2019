@@ -33,7 +33,9 @@ Note: To check your code, you can output `trigger` (or similarly any other named
 
 Then, you can check the output by running `./synth | head -n 100` to print the first 100 output values, or run the program in the online [Playground](http://arrp-lang.info/play) which displays up to 1000 output values. Please mind that only one output definition is allowed in a program.
 
-Challenge: Modify `trigger` so that it is true whenever `n` is a multiple of the desired number of samples. You can use the function `sec` defined in `synth.arrp` to convert a duration in seconds to samples.
+**Challenge:**
+
+- Modify `trigger` so that it is true whenever `n` is a multiple of the desired number of samples. You can use the function `sec` defined in `synth.arrp` to convert a duration in seconds to samples.
 
 ## Creating a control signal
 
@@ -46,7 +48,7 @@ Here is a simpler function that generates a signal starting at 1 and descending 
       y[n] = if trigger[n] then 1.0 else y[n-1] - 0.01;
     };
 
-Challenge: Modify `ramp` as follows:
+**Challenge:** Modify `ramp` as follows:
 
 - Add an argument `duration`.
 - Adjust the rate at which the signal descends so that it reaches 0 after `duration` samples.
@@ -62,7 +64,7 @@ In the following example, `sound` is modified so that its amplitude descends fro
 
     sound = osc(hz(500)) * 0.2 * ramp(trigger, sec(0.2));
 
-Challenges:
+**Challenge:**
 
 - Modify `sound` so that its frequency descends from 600 Hz to 200 Hz together with the amplitude.
 - What other parameters of the sound can you control? Suggestion: try generating a sum of sinusoids at different frequencies and control their relative amplitude.
