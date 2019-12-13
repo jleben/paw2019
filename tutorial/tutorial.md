@@ -13,6 +13,12 @@ If you wish to compile and run Arrp code on your computer, these are the prerequ
       - Open the Terminal and navigate to the `tutorial` directory.
       - Set up environment: `source mac/setup.sh`
 
+Please test your setup by running the following commands in a console and making sure no errors are reported:
+
+    c++ --version
+    arrp --version
+    ffmpeg
+
 ## Tutorial Overview
 
 This tutorial has three parts:
